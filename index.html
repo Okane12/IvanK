@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ivan Kuang | Mechanical Engineer Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3b82f6',
+              secondary: '#64748b',
+              dark: '#0f172a',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'blob': 'blob 7s infinite',
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    
+    
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+    </style>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
+      }
+    }
+    </script>
+    
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-blue-100 selection:text-blue-900">
+    <div id="root"></div>
+
+    
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect, useRef } from 'react';
+      import { createRoot } from 'react-dom/client';
+      // constants and data
+      const PROFILE_NAME = "Ivan Kuang";
+      const PROFILE_TITLE = "Mechanical Engineer";
+      const PROFILE_BIO = `
+        I am a Mechanical Engineering student at UC Berkeley, passionate about solving complex physical challenges. 
+        I am actively involved in high-performance engineering teams like CalSol (Solar Vehicle Racing) and STAR (Space Technology and Rocketry), 
+        where I design composite structures and aerospace components. 
+        Outside of the workshop, I enjoy F1 (McLaren fan), woodworking, and lion dance.
+      `;
+
+      const CONTACT_EMAIL = "ivan.kuang12@berkeley.edu";
+      const CONTACT_PHONE = "626-609-8004";
+      const LINKEDIN_URL = "https://www.linkedin.com/in/ivan-kuang/";
+      const RESUME = "./pdfs/Resume_IvanKuang (1).pdf"; 
+      
+      // PROJECTS LIST
+      const PROJECTS = [
+        {
+          id: '1',
+          title: 'Wind Turbine',
+          description: 'Designed a wind tower under strict constraints (<17 in³ volume, 16" height) for a 9x9x9" 3D printer. The design successfully housed motors and turbine blades while minimizing deflection (9.63mm under 3.5kg load). Validated performance outputs of 0.5W power generation through physical testing.',
+          tags: ['3D Printing', 'DfM', 'Simulation', 'Prototyping', 'Solidworks', 'FEA'],
+          imageUrl: './images/Turbine1.png',
+          link: './pdfs/E26 Lab Report.pdf'
+        },
+        {
+          id: '2',
+          title: 'C.A.R.E. System',
+          description: 'Designed a scalable material handling solution for semiconductor fabrication environments. The system focused on maneuverability, sensitive material containment, and precision handling constraints. This design won First Place in the ASME Cadathon for its efficiency, safety features, and innovative approach to material compatibility.',
+          tags: ['Product Design', 'Material Handling', 'Award Winner', 'Solidworks', 'Onshape','FEA'],
+          imageUrl: './images/Care1.png',
+          link: './pdfs/Cadathon 2025  Group 3  C.A.R.E.pdf' 
+        },
+        {
+          id: '3',
+          title: 'Airframe Structural Design',
+          description: 'Developed protection strategies for external rocket hardware (wiring, pipes) against aerodynamic exposure. Implemented a chassis extension to replace a high-stress coupler on the Solid Demonstrator rocket, maximizing the structural Factor of Safety (FOS). Currently designing and analyzing Von Karman nose cones to minimize parasitic drag.',
+          tags: ['Onshape', 'Structural Analysis', 'Solidworks FEA', 'Aerodynamics'],
+          imageUrl: './images/STAR1.png',
+          link: './pdfs/STAR12.pdf' 
+        },
+        {
+          id: '4',
+          title: 'Occupancy Cell - In Progress',
+          description: 'Designed the front bulkhead for the solar vehicle occupancy cell. Currently developing a comprehensive manufacturing plan for the composite structure, including joining procedures, epoxy application, and clamping strategies. Researching materials and layup schedules to ensure structural integrity for the final assembly.',
+          tags: ['Composites', 'Manufacturing', 'Automotive', 'Surface Modeling', 'TIG Welding', 'MIG Welding', 'Solidworks'],
+          imageUrl: './images/calsol1.png',
+          link: '#'
+        },
+        {
+          id: '5',
+          title: 'Sknofnung - In Progress',
+          description: 'Designed a 1 lb plastic antweight combat robot built around a custom shuffle-drive system. Inspired by bots like Silent X and Monkfish, it uses a four-bar linkage driven by a crank to produce an optimized walking path, modeled through Python simulations to refine stride length and step height. The drive modules were developed in Onshape using a master sketch for tight packaging, and the feet were SLA-printed in Formlabs 40A flexible resin to achieve the grip needed for controlled pushing and maneuverability.',
+          tags: ['Onshape', 'DfM', '3D Printing', 'Mechanical Design'],
+          imageUrl: './images/SKOFNUNG1.png',
+          link: '#' 
+        }
+      ];
+
+      //stuff
+
+      const ProjectCard = ({ project, onOpenPdf }) => {
+        return (
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full border border-gray-100">
+            
+            <div className="relative h-64 overflow-hidden bg-gray-200 group">
+              <img 
+                src={project.imageUrl} 
+                alt={project.title} 
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+
+            
+            <div className="p-8 flex-1 flex flex-col">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
+              
+              <p className="text-gray-600 mb-6 text-base leading-relaxed flex-1">
+                {project.description}
+              </p>   
+              <div className="mb-6">
+              {project.link && project.link !== '#' ? (
+                <button
+                  onClick={() => onOpenPdf(project.link)}
+                  className="inline-flex items-center space-x-3 group cursor-pointer focus:outline-none"
+                >
+                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-100 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 11v4m0 0l-2-2m2 2l2-2"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700 border-b-2 border-transparent group-hover:border-blue-100 text-left">
+                    Tap for More Information
+                  </span>
+                </button>
+              ) : (
+                <span className="text-sm font-semibold text-gray-400 italic">
+                  More to come!
+                </span>
+              )}
+            </div>
+
+                          
+              <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100">
+                {project.tags.map((tag, index) => (
+                  <span 
+                    key={index} 
+                    className="px-3 py-1.5 text-xs font-semibold bg-gray-100 text-gray-700 rounded-md tracking-wide"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const App = () => {
+        const [scrolled, setScrolled] = useState(false);
+        const [selectedPdf, setSelectedPdf] = useState(null);
+
+        useEffect(() => {
+          const handleScroll = () => setScrolled(window.scrollY > 50);
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        const scrollToSection = (id) => {
+          const element = document.getElementById(id);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        const handleOpenPdf = (link) => {
+            setSelectedPdf(link);
+        };
+
+        useEffect(() => {
+          document.body.style.overflow = selectedPdf ? 'hidden' : 'unset';
+          return () => { document.body.style.overflow = 'unset'; };
+        }, [selectedPdf]);
+
+        return (
+          <div className="min-h-screen flex flex-col">
+            <nav className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+              <div className="max-w-6xl mx-auto px-4 md:px-8 flex justify-between items-center">
+                <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 cursor-pointer" onClick={() => scrollToSection('home')}>
+                  {PROFILE_NAME.split(' ')[0]}<span className="text-gray-800">.eng</span>
+                </div>
+                <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                  <button onClick={() => scrollToSection('projects')} className="hover:text-blue-600 transition-colors">Projects</button>
+                  <button onClick={() => scrollToSection('contact')} className="hover:text-blue-600 transition-colors">Contact</button>
+                </div>
+              </div>
+            </nav>
+
+            {/* Hero Section */}
+            <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-8 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center gap-12">
+              <div className="flex-1 space-y-6 text-center md:text-left">
+                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                  Ivan Kuang
+                </h1>
+                <p className="text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                  {PROFILE_BIO}
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                  <button onClick={() => scrollToSection('projects')} className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30">
+                    View Portfolio
+                  </button>
+                  <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all">
+                    Contact Me
+                  </button>
+                </div>
+              </div>
+              
+              <div className="flex-1 relative w-full max-w-md">
+                 <div className="absolute top-0 -left-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                 <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                 <div className="absolute -bottom-8 left-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                 <div className="relative rounded-2xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                   <img src="./images/me.png" alt={PROFILE_NAME} className="w-full h-auto" />
+                 </div>
+              </div>
+            </section>
+
+            {/* Projects Grid */}
+            <section id="projects" className="py-20 bg-gray-50">
+              <div className="max-w-6xl mx-auto px-4 md:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Engineering Projects</h2>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    A detailed look at my design process, analysis, and fabrication work from UC Berkeley and beyond.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                  {PROJECTS.map((project) => (
+                    <div key={project.id} className="h-full">
+                      <ProjectCard 
+                        project={project} 
+                        onOpenPdf={handleOpenPdf} 
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Contact Section */}
+            <section id="contact" className="py-20 bg-white">
+              <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Build Something</h2>
+                <p className="text-xl text-gray-600 mb-10">
+                  I'm currently available for mechanical design and engineering roles.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row justify-center gap-6">
+                {/* LinkedIn Button */}
+                <a 
+                href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 transition-all transform hover:-translate-y-1"
+                >
+                  LinkedIn
+                </a>
+
+                {/* Resume Button (opens PDF viewer) */}
+                <button
+                  type="button"
+                  onClick={() => handleOpenPdf(RESUME)}
+                  className="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-gray-900 text-white font-semibold shadow-md hover:bg-gray-800 transition-all transform hover:-translate-y-1"
+                >
+                  Resume
+                </button>
+              </div>
+                <p className="mt-20 text-gray-900">
+                  Call: {CONTACT_PHONE} <br />
+                  Email: {CONTACT_EMAIL}
+
+                </p>
+              </div>
+            </section>
+
+            {/* PDF Viewer Modal */}
+            {selectedPdf && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+                <div 
+                  className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+                  onClick={() => setSelectedPdf(null)}
+                ></div>
+                
+                <div className="relative w-full max-w-5xl h-[85vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-up">
+                  <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50">
+                    <h3 className="font-semibold text-gray-700">Project Details</h3>
+                    <div className="flex items-center gap-2">
+                        {/* Fallback button for external links/download */}
+                        <button 
+                          onClick={() => setSelectedPdf(null)}
+                          className="text-gray-500 hover:text-gray-800 p-2 rounded-full hover:bg-gray-200 transition-colors focus:outline-none"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex-1 bg-gray-100 relative w-full h-full flex flex-col">
+                    {(!selectedPdf || selectedPdf === '#') ? (
+                       <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center">
+                           <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mb-6 text-gray-400">
+                             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                           </div>
+                           <h4 className="text-xl font-bold text-gray-800 mb-2">No PDF Linked Yet</h4>
+                           <p className="text-gray-600 max-w-md mx-auto mb-6">
+                             This project currently uses a placeholder link. To view the documentation, you need to add your PDF file.
+                           </p>
+                           <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-left max-w-md mx-auto text-sm text-blue-800">
+                             <p className="font-bold mb-1">How to add your PDF:</p>
+                             <ol className="list-decimal ml-4 space-y-1">
+                               <li>Create a folder named <code>pdfs</code> next to this file.</li>
+                               <li>Place your PDF file inside (e.g., <code>report.pdf</code>).</li>
+                               <li>Edit <code>index.html</code> and find the <code>PROJECTS</code> list.</li>
+                               <li>Change <code>link: '#'</code> to <code>link: './pdfs/report.pdf'</code>.</li>
+                             </ol>
+                           </div>
+                       </div>
+                    ) : (
+                       <iframe 
+                          src={selectedPdf} 
+                          className="w-full h-full flex-1" 
+                          title="Project Documentation PDF"
+                          style={{ border: 'none' }}
+                        />
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
