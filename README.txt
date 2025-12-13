@@ -1,1 +1,2 @@
-IVAN KUANG PORTFOLIO Bad code bs code everything bs
+
+Bad code bs code everything bs
