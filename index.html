@@ -51,15 +51,10 @@
       }
     </style>
 
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.2.0",
-        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
-      }
-    }
-    </script>
     
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="/index.css">
@@ -68,9 +63,10 @@
     <div id="root"></div>
 
     
-    <script type="text/babel" data-type="module">
-      import React, { useState, useEffect, useRef } from 'react';
-      import { createRoot } from 'react-dom/client';
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+const { createRoot } = ReactDOM;
+
       // constants and data
       const PROFILE_NAME = "Ivan Kuang";
       const PROFILE_TITLE = "Mechanical Engineer";
@@ -84,7 +80,7 @@
       const CONTACT_EMAIL = "ivan.kuang12@berkeley.edu";
       const CONTACT_PHONE = "626-609-8004";
       const LINKEDIN_URL = "https://www.linkedin.com/in/ivan-kuang/";
-      const RESUME = "./pdfs/Resume_IvanKuang.pdf"; 
+      const RESUME = "./pdfs/Resume_IvanKuang (1).pdf"; 
       
       // PROJECTS LIST
       const PROJECTS = [
@@ -115,7 +111,7 @@
         {
           id: '4',
           title: 'Occupancy Cell - In Progress',
-          description: 'Worked on the design and development of the occupancy cell for GEN XI. Currently developing a comprehensive manufacturing plan for the composite structure, including joining procedures, epoxy application, and clamping strategies. Researching materials and layup schedules to ensure structural integrity for the final assembly.',
+          description: 'Designed and developed the occupancy cell for the solar vehicle GEN XI. Currently developing a comprehensive manufacturing plan for the composite structure, including joining procedures, epoxy application, and clamping strategies. Researching materials and layup schedules to ensure structural integrity for the final assembly.',
           tags: ['Composites', 'Manufacturing', 'Automotive', 'Surface Modeling', 'TIG Welding', 'MIG Welding', 'Solidworks'],
           imageUrl: './images/calsol1.png',
           link: '#'
@@ -390,6 +386,5 @@
       const root = createRoot(document.getElementById('root'));
       root.render(<App />);
     </script>
-  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
