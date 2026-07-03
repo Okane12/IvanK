@@ -3,7 +3,7 @@
 // contact section. Switches to ProjectDetailPage when a card is opened.
 // ─────────────────────────────────────────────────────────────────────────
 
-const CATEGORY_ORDER = ['Club & Team Projects', 'Academic & Personal Projects', 'Research', 'Competition & Awards'];
+const CATEGORY_ORDER = ['Academic & Personal Projects', 'Club & Team Projects', 'Research', 'Competition & Awards'];
 
 const CATEGORY_COLORS = {
   'Research': 'text-purple-400 border-purple-500/30 bg-purple-500/10',
