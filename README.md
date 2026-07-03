@@ -16,13 +16,3 @@ Every push to `main` auto-deploys through GitHub Pages.
 
 To update the site, edit `js/data.js`. Adding a project = new entry in the
 `PROJECTS` array plus its image/PDF in the right folder.
-
-## Running locally
-
-Serve the folder over HTTP (opening index.html straight from disk won't work):
-
-```
-python -m http.server 8000
-```
-
-Then open http://localhost:8000
