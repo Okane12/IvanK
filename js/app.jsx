@@ -19,9 +19,16 @@ const CATEGORY_ICONS = {
   'Academic & Personal Projects': '⚙️',
 };
 
+// Each project gets a URL like #/wind-turbine so the browser's back/forward
+// buttons work and individual projects can be linked to directly.
+const projectSlug = p => p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const projectFromHash = () => {
+  const m = window.location.hash.match(/^#\/(.+)$/);
+  return (m && PROJECTS.find(p => projectSlug(p) === m[1])) || null;
+};
+
 const App = () => {
-  const [page, setPage] = React.useState('home'); // 'home' | 'project'
-  const [activeProject, setActiveProject] = React.useState(null);
+  const [activeProject, setActiveProject] = React.useState(projectFromHash);
   const [selectedPdf, setSelectedPdf] = React.useState(null);
   const [scrolled, setScrolled] = React.useState(false);
 
@@ -31,10 +38,27 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Keep page state in sync with the URL hash (back/forward, direct links)
+  React.useEffect(() => {
+    const onHashChange = () => {
+      const project = projectFromHash();
+      setActiveProject(project);
+      if (!project) {
+        // Returning home: scroll to the projects grid after a tick
+        setTimeout(() => {
+          const el = document.getElementById('projects');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
   // Trigger scroll-reveal after each page render
   React.useEffect(() => {
     window.runReveal && window.runReveal();
-  }, [page]);
+  }, [activeProject]);
 
   // Lock body scroll while the PDF modal is open
   React.useEffect(() => {
@@ -49,24 +73,18 @@ const App = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Navigation happens through the URL hash; the hashchange listener
+  // above updates the state.
   const handleLearnMore = project => {
-    setActiveProject(project);
-    setPage('project');
-    window.scrollTo(0, 0);
+    window.location.hash = '/' + projectSlug(project);
   };
 
   const handleBack = () => {
-    setPage('home');
-    setActiveProject(null);
-    // Scroll to projects after a tick
-    setTimeout(() => {
-      const el = document.getElementById('projects');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+    window.location.hash = '';
   };
 
   // ── Project detail page ──
-  if (page === 'project' && activeProject) {
+  if (activeProject) {
     return (
       <React.Fragment>
         <ProjectDetailPage project={activeProject} onBack={handleBack} onOpenPdf={setSelectedPdf} />
@@ -195,7 +213,9 @@ const App = () => {
             </button>
           </div>
           <p className="mt-16 font-mono text-sm" style={{ color: '#8892a4' }}>
-            {CONTACT_PHONE} &nbsp;·&nbsp; {CONTACT_EMAIL}
+            <a href={`tel:${CONTACT_PHONE}`} className="hover:text-amber-400 transition-colors">{CONTACT_PHONE}</a>
+            &nbsp;·&nbsp;
+            <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-amber-400 transition-colors">{CONTACT_EMAIL}</a>
           </p>
         </div>
       </section>

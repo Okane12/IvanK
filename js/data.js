@@ -195,6 +195,12 @@ const PROJECTS = [{
         src: './images/FinalCAD.png',
         caption: 'Final CAD — railed beam, custom hinge mount, box pocket',
         imagePosition: 'center 30%'
+      }, {
+        src: './images/deskcase.png',
+        caption: 'Folded flat for storage — hinge mounts and laptop pocket'
+      }, {
+        src: './images/deskside.png',
+        caption: 'Side profile — C-clamp attachment and unfolded surface'
       }]
     }, {
       heading: 'Material & Process Selection',
