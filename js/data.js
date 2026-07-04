@@ -145,6 +145,40 @@ const PROJECTS = [{
     }]
   }
 }, {
+  id: '8',
+  category: 'Academic & Personal Projects',
+  title: 'Wine Quality Predictor',
+  description: 'Trained 40 machine learning models to predict red wine quality from 11 chemical properties. Compared linear, ridge, and lasso regression, random forests, gradient boosted trees, and neural networks across hyperparameter sweeps. The best model, a random forest, reached a validation R² of 0.498.',
+  tags: ['Python', 'scikit-learn', 'TensorFlow', 'Pandas', 'Machine Learning', 'Data Analysis'],
+  imageUrl: './images/winequality.png',
+  link: './pdfs/wine-quality-report.pdf',
+  details: {
+    overview: 'Team course project: predict the quality score of Portuguese red wine from lab measurements alone. We built a model comparison pipeline on the Kaggle Red Wine Quality dataset (1599 wines, 11 chemical features, quality scored by human tasters) and tested 40 model configurations across 6 families. Every chart on this page is interactive and rendered from the actual experiment results, not screenshots.',
+    sections: [{
+      heading: 'The Data',
+      body: '1599 samples, no missing values, all features numeric: acidity, sugar, chlorides, sulfur dioxide, density, pH, sulphates, and alcohol. Scores cluster at 5 and 6, so the models see very few examples of great or terrible wine. That skew caps how well any model can predict the extremes.',
+      charts: ['qualityDist']
+    }, {
+      heading: 'Method',
+      body: 'The data was split 70/20/10 into train, validation, and test sets, and features were standardized. Each model family got a hyperparameter sweep: alpha for ridge and lasso, tree count and depth for the forests and boosted trees, and layer count, width, and activation for the neural nets. Models were compared on validation R², with training R² used to catch overfitting.'
+    }, {
+      heading: 'Linear Baselines',
+      body: 'Plain linear regression scored 0.346 on validation with a similarly low training score, a clear underfit. Regularization barely helped. The ridge curve peaks near alpha 100 and then falls as the coefficients shrink too far. Lasso only got worse as alpha grew and eventually zeroed out every feature.',
+      charts: ['ridge', 'lasso']
+    }, {
+      heading: 'Tree Models',
+      body: 'Random forest won overall at 0.498 validation R² with 800 trees and unlimited depth. Validation score climbs with depth until about 16 and flattens, so shallow trees underfit this data. Gradient boosting came in just behind at 0.496 and peaked at 100 boosting stages. Past 200 stages it memorizes the training set and validation performance slides.',
+      charts: ['rfDepth', 'gbtEstimators']
+    }, {
+      heading: 'Neural Networks',
+      body: 'We tested ten multilayer perceptrons, varying depth, width, and activation. Bigger networks overfit badly: a 3-layer, 128-unit relu model hit 0.79 training R² but only 0.22 on validation. The best config was small, 2 layers of 32 sigmoid units, at 0.390. With only about 1100 training samples, the tree models had a clear edge.'
+    }, {
+      heading: 'Results',
+      body: 'We retrained the winning random forest on train plus validation and scored it once on the held-out test set: R² of 0.423. Chemistry alone predicts wine quality only moderately well, which fits the subjective nature of the score itself. The comparison below shows the best model from each family. The large gap between training and validation for the tree models is the overfitting the sweeps were tuned against.',
+      charts: ['summary']
+    }]
+  }
+}, {
   id: '6',
   category: 'Research',
   title: 'Binder Jet Printer',

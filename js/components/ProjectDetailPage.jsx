@@ -133,6 +133,7 @@ const ProjectDetailPage = ({ project, onBack, onOpenPdf }) => {
               {section.specialComponent === 'fitsTable' && details.fitsData && (
                 <FitsTable data={details.fitsData} />
               )}
+              {section.charts && <ChartGrid ids={section.charts} />}
               {section.images && section.images.length > 0 && (
                 <div className={`mt-5 grid gap-4 ${
                   section.images.length === 1 ? 'grid-cols-1'
