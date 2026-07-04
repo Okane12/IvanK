@@ -3,19 +3,19 @@
 // contact section. Switches to ProjectDetailPage when a card is opened.
 // ─────────────────────────────────────────────────────────────────────────
 
-const CATEGORY_ORDER = ['Academic & Personal Projects', 'Club & Team Projects', 'Research', 'Competition & Awards'];
+const CATEGORY_ORDER = ['Academic & Personal Projects', 'Club & Team Projects', 'Design', 'Research'];
 
 const CATEGORY_COLORS = {
   'Research': 'text-purple-400 border-purple-500/30 bg-purple-500/10',
   'Club & Team Projects': 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-  'Competition & Awards': 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+  'Design': 'text-amber-400 border-amber-500/30 bg-amber-500/10',
   'Academic & Personal Projects': 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
 };
 
 const CATEGORY_ICONS = {
   'Research': '🔬',
   'Club & Team Projects': '🚀',
-  'Competition & Awards': '🏆',
+  'Design': '📐',
   'Academic & Personal Projects': '⚙️',
 };
 
@@ -93,9 +93,15 @@ const App = () => {
     );
   }
 
-  // Group projects by category, in display order
+  // Group projects by category, in display order. Within a category,
+  // projects sort by their optional `order` field.
   const groupedProjects = CATEGORY_ORDER
-    .map(category => ({ category, projects: PROJECTS.filter(p => p.category === category) }))
+    .map(category => ({
+      category,
+      projects: PROJECTS
+        .filter(p => p.category === category)
+        .sort((a, b) => (a.order || 99) - (b.order || 99)),
+    }))
     .filter(group => group.projects.length > 0);
 
   // ── Portfolio home page ──

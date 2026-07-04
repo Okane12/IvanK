@@ -15,10 +15,12 @@ const RESUME = "./pdfs/resume-ivan-kuang.pdf";
 const PROJECTS = [{
   id: '1',
   category: 'Academic & Personal Projects',
+  order: 2,
   title: 'Wind Turbine',
   description: 'Designed a wind tower under strict constraints (<17 in³ volume, 16" height) for a 9x9x9" 3D printer. The design successfully housed motors and turbine blades while minimizing deflection (9.63mm under 3.5kg load). Validated performance outputs of 0.5W power generation through physical testing.',
   tags: ['3D Printing', 'DfM', 'Simulation', 'Prototyping', 'Solidworks', 'FEA'],
   imageUrl: './images/Turbine1.png',
+  imagePosition: 'center 35%',
   link: './pdfs/e26-lab-report.pdf',
   details: {
     overview: 'This was a semester-long project for Engineering 26 at UC Berkeley. The goal was to design, fabricate, and physically test a 3D-printed wind turbine system optimized for both power output and structural stiffness.',
@@ -44,11 +46,13 @@ const PROJECTS = [{
   }
 }, {
   id: '2',
-  category: 'Competition & Awards',
+  category: 'Design',
   title: 'C.A.R.E. System',
   description: 'Designed a scalable material handling solution for semiconductor fabrication environments. The system focused on maneuverability, sensitive material containment, and precision handling constraints. This design won First Place in the ASME Cadathon for its efficiency, safety features, and innovative approach to material compatibility.',
   tags: ['Product Design', 'Material Handling', 'Award Winner', 'Solidworks', 'Onshape', 'FEA'],
   imageUrl: './images/Care1.png',
+  imageFit: 'contain',
+  imageBg: '#ffffff',
   link: './pdfs/cadathon-2025-care.pdf',
   details: {
     overview: 'C.A.R.E. (Cleanroom Automated Robot Entity) was designed in 12 hours for the 2025 ASME Cadathon and won First Place. The challenge: design a scalable material handling solution for ISO Class 1-5 semiconductor cleanroom environments.',
@@ -76,6 +80,8 @@ const PROJECTS = [{
   description: 'Developed protection strategies for external rocket hardware (wiring, pipes) against aerodynamic exposure. Implemented a chassis extension to replace a high-stress coupler on the Solid Demonstrator rocket, maximizing the structural Factor of Safety (FOS). Currently designing and analyzing Von Karman nose cones to minimize parasitic drag.',
   tags: ['Onshape', 'Structural Analysis', 'Solidworks FEA', 'Aerodynamics'],
   imageUrl: './images/STAR1.png',
+  imageFit: 'contain',
+  imageBg: '#ffffff',
   link: './pdfs/star-airframe.pdf',
   details: {
     overview: 'As an Airframe Engineer on UC Berkeley\'s STAR (Space Technology and Rocketry) team, I work on the structural systems of the Solid Demonstrator rocket. This is a high-powered vehicle designed as a precursor to the primary flight vehicle.',
@@ -120,10 +126,13 @@ const PROJECTS = [{
 }, {
   id: '5',
   category: 'Academic & Personal Projects',
+  order: 3,
   title: 'Skofnung',
   description: 'Designed a 1 lb plastic antweight combat robot built around a custom shuffle-drive system. Uses a four-bar linkage driven by a crank to produce an optimized walking path, modeled through Python simulations to refine stride length and step height.',
   tags: ['Onshape', 'DfM', '3D Printing', 'Mechanical Design'],
   imageUrl: './images/SKOFNUNG1.png',
+  imageFit: 'contain',
+  imageBg: '#ffffff',
   link: '#',
   details: {
     overview: 'Skofnung is a 1 lb antweight combat robot engineered with a shuffle-drive locomotion system. This is a departure from the wheel-dominated norms of its weight class. Named for the legendary Norse sword, the robot is designed to prioritize arena control and pushing power over traditional weapon-based attacks.',
@@ -147,10 +156,13 @@ const PROJECTS = [{
 }, {
   id: '8',
   category: 'Academic & Personal Projects',
+  order: 5,
   title: 'Wine Quality Predictor',
   description: 'Trained 40 machine learning models to predict red wine quality from 11 chemical properties. Compared linear, ridge, and lasso regression, random forests, gradient boosted trees, and neural networks across hyperparameter sweeps. The best model, a random forest, reached a validation R² of 0.498.',
   tags: ['Python', 'scikit-learn', 'TensorFlow', 'Pandas', 'Machine Learning', 'Data Analysis'],
   imageUrl: './images/winequality.png',
+  imageFit: 'contain',
+  imageBg: '#161b22',
   link: './pdfs/wine-quality-report.pdf',
   details: {
     overview: 'Team course project: predict the quality score of Portuguese red wine from lab measurements alone. We built a model comparison pipeline on the Kaggle Red Wine Quality dataset (1599 wines, 11 chemical features, quality scored by human tasters) and tested 40 model configurations across 6 families. Every chart on this page is interactive and rendered from the actual experiment results, not screenshots.',
@@ -180,7 +192,8 @@ const PROJECTS = [{
   }
 }, {
   id: '6',
-  category: 'Research',
+  category: 'Academic & Personal Projects',
+  order: 4,
   title: 'Binder Jet Printer',
   description: 'Developed a high-fidelity Binder Jetting research platform at a 90% cost reduction compared to commercial units. Integrated a 40MP in-situ imaging pipeline and CNN-based defect detection framework for real-time anomaly classification.',
   tags: ['Solidworks', 'Electronics', 'Machine Learning', 'Mechanical Design', '3D Printing', 'Materials Science'],
@@ -208,12 +221,13 @@ const PROJECTS = [{
 }, {
   id: '7',
   category: 'Academic & Personal Projects',
+  order: 1,
   title: 'Desk Extender',
   description: 'Designed and fabricated a foldable desk extender for small classroom seats. The device clamps onto any desk edge, unfolds to expand usable surface area, and includes a rear laptop pocket — all from laser-cut plywood, 3D-printed PLA, and machined aluminum hardware.',
   tags: ['Laser Cutting', '3D Printing', 'FEA', 'Plywood', 'GD&T', 'Onshape', 'Fabrication'],
   imageUrl: './images/desktopextenderclosed.png',
-  imagePosition: 'center 50%',
-  imageScale: 1,
+  imageFit: 'contain',
+  imageBg: '#ffffff',
   link: './pdfs/e29-final-project-report.pdf',
   details: {
     overview: 'Team 101-1\'s Desk Extender is a Spring 2026 Engineering 29 capstone project. The device mounts to small auditorium-style desks via a dual-clamp rail, then unfolds a hinged wooden surface to nearly double available workspace. A rear pocket stores a laptop securely. The full assembly blends laser-cut birch plywood, PLA 3D-printed brackets, and machined Aluminum 6061 standoffs.',

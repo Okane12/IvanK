@@ -3,8 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 // Builds the inline style for a project image, honoring optional
-// per-project positioning tweaks set in js/data.js.
+// per-project tweaks set in js/data.js. imageFit: 'contain' shows the
+// whole image on an imageBg background instead of cropping to fill.
 const projectImageStyle = project => ({
+  objectFit: project.imageFit || 'cover',
   objectPosition: project.imagePosition || 'center',
   transform: project.imageScale ? `scale(${project.imageScale})` : undefined,
   transformOrigin: project.imagePosition || 'center',
