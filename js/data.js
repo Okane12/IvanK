@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// SITE CONTENT — edit this file to update your bio, contact info, and
+// SITE CONTENT: edit this file to update your bio, contact info, and
 // projects. No code lives here, only data.
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -38,7 +38,7 @@ const PROJECTS = [{
       body: 'A 99,774-element solid mesh was run in SolidWorks Simulation with a 9.8N tip load. Max von Mises stress: 8.77 MPa (well below ABS yield of 20 MPa). Minimum FOS: 4.4. Predicted deflection at 1kg: 1.92mm.'
     }, {
       heading: 'Testing Results',
-      body: 'Power test at 25 mph: peak output of 0.5W at 1.45V, 335mA, 2683 RPM. Deflection test: 2.63mm at 1kg load (vs. 1.92mm predicted — 25% higher, likely due to FDM layer anisotropy). Tower stiffness: 3.55 N/mm. Stiffness-per-gram: 19.9 N/mm·kg.'
+      body: 'Power test at 25 mph: peak output of 0.5W at 1.45V, 335mA, 2683 RPM. Deflection test: 2.63mm at 1kg load (vs. 1.92mm predicted, 25% higher, likely due to FDM layer anisotropy). Tower stiffness: 3.55 N/mm. Stiffness-per-gram: 19.9 N/mm·kg.'
     }, {
       heading: 'What I Learned',
       body: 'FEA assumes isotropic material, which FDM prints are not. Layer orientation relative to load direction significantly affects real-world stiffness. For the rotor, the hub thickness constrained our ability to implement the desired twist angle, limiting efficiency to 0.83% vs. the Betz limit of 59.3%. Future iterations would prioritize a hub redesign to allow greater twist.'
@@ -70,7 +70,7 @@ const PROJECTS = [{
       body: 'A 3-joint robotic arm with shaftless brushless DC motors and 1" OD fiberglass tubes (swapped from aluminum to reduce particle shedding). Joints are covered in Mylar for static discharge protection. A vacuum-tip end effector handles wafer pick-and-place. Reach was calculated geometrically to cover the full interior of the cart and extend to external workstations.'
     }, {
       heading: 'Why It Won',
-      body: 'The design hit 95% of commercial system functionality at under 5% of the cost (~$2,000 vs. $100,000+). The iterative CAD process from 2D layout sketches in GoodNotes → Onshape for collaboration → SolidWorks for FEA — was highlighted by judges as unusually rigorous for a 12-hour competition.'
+      body: 'The design hit 95% of commercial system functionality at under 5% of the cost (~$2,000 vs. $100,000+). The iterative CAD process from 2D layout sketches in GoodNotes → Onshape for collaboration → SolidWorks for FEA was highlighted by judges as unusually rigorous for a 12-hour competition.'
     }]
   }
 }, {
@@ -108,7 +108,7 @@ const PROJECTS = [{
   imageUrl: './images/calsol1.png',
   link: '#',
   details: {
-    overview: 'As a Chassis Engineer on CalSol (UC Berkeley\'s Solar Vehicle Racing team), I am designing and manufacturing the occupancy cell for GEN XI — the primary load-bearing composite structure that forms the driver\'s compartment of the vehicle.',
+    overview: 'As a Chassis Engineer on CalSol (UC Berkeley\'s Solar Vehicle Racing team), I am designing and manufacturing the occupancy cell for GEN XI, the primary load-bearing composite structure that forms the driver\'s compartment of the vehicle.',
     sections: [{
       heading: 'What Is the Occupancy Cell?',
       body: 'The occupancy cell is the structural backbone of the solar vehicle. It houses the driver, integrates with the suspension, and must meet ASME Solar Car challenge safety requirements. It is a monocoque composite structure, meaning the skin itself carries structural loads rather than relying on an internal frame.'
@@ -195,7 +195,7 @@ const PROJECTS = [{
   category: 'Academic & Personal Projects',
   order: 2,
   title: 'Smart Matcha Dispenser',
-  description: 'Automatic matcha dispenser built for ME 100 at UC Berkeley. A load cell weighs the water in your cup, one ESP32 sends the weight over ESP-NOW to a second that pulses a micromotor to dispense the right amount of powder, and a third drives an LCD readout. No buttons and no measuring spoons.',
+  description: 'Automatic matcha dispenser built around three wireless ESP32 boards. A load cell weighs the water in your cup, one ESP32 sends the weight over ESP-NOW to a second that pulses a micromotor to dispense the right amount of powder, and a third drives an LCD readout. No buttons and no measuring spoons.',
   tags: ['ESP32', 'ESP-NOW', 'Electronics', 'Embedded Systems', 'Sensors', 'Rapid Prototyping'],
   imageUrl: './images/dispenser-prototype.jpg',
   imagePosition: 'center 30%',
@@ -261,7 +261,7 @@ const PROJECTS = [{
     overview: 'As an Undergraduate Researcher in the Gu Research Group at UC Berkeley, I am helping develop a custom binder jetting research platform. We built this from scratch at a 90% cost reduction compared to commercial systems to study green body structural integrity and process parameter optimization.',
     sections: [{
       heading: 'Why Build It From Scratch?',
-      body: 'Commercial binder jet printers cost $200k–$1M+ and offer no access to process internals. By building our own, we can instrument every axis, tune every parameter, and implement in-situ imaging that commercial machines do not support. Total build cost: under $15,000.'
+      body: 'Commercial binder jet printers cost $200k to $1M+ and offer no access to process internals. By building our own, we can instrument every axis, tune every parameter, and implement in-situ imaging that commercial machines do not support. Total build cost: under $15,000.'
     }, {
       heading: 'Mechanical Architecture',
       body: 'I contributed to the design and fabrication of the core mechanical systems: high-tolerance aluminum build and feed piston assemblies with custom O-ring seals for total powder containment, linear motion stages for the recoater and print carriage, and the enclosure structure. All tolerances were held to ±0.002" on sealing surfaces to prevent powder migration between the build and overflow chambers.'
@@ -281,7 +281,7 @@ const PROJECTS = [{
   category: 'Academic & Personal Projects',
   order: 1,
   title: 'Desk Extender',
-  description: 'Designed and fabricated a foldable desk extender for small classroom seats. The device clamps onto any desk edge, unfolds to expand usable surface area, and includes a rear laptop pocket — all from laser-cut plywood, 3D-printed PLA, and machined aluminum hardware.',
+  description: 'Designed and fabricated a foldable desk extender for small classroom seats. The device clamps onto any desk edge, unfolds to expand usable surface area, and includes a rear laptop pocket, all from laser-cut plywood, 3D-printed PLA, and machined aluminum hardware.',
   tags: ['Laser Cutting', '3D Printing', 'FEA', 'Plywood', 'GD&T', 'Onshape', 'Fabrication'],
   imageUrl: './images/desktopextenderclosed.png',
   imageFit: 'contain',
@@ -293,32 +293,32 @@ const PROJECTS = [{
     cadLink: 'https://cad.onshape.com/documents/d71e4eeebce875e60bad1736/w/99ba947de1130029e2c9cb7c/e/3049beb7b776da85c2f05cf0',
     sections: [{
       heading: 'Problem & Motivation',
-      body: 'Standard lecture hall tablet-arm desks offer only ~12×16 inches of working surface — barely enough for a laptop. Students who need to use both a notebook and a laptop simultaneously run out of room. Our team of six set out to design a modular add-on that clamps securely, stores flat when not in use, and expands surface area without interfering with neighboring seats.'
+      body: 'Standard lecture hall tablet-arm desks offer only ~12×16 inches of working surface, barely enough for a laptop. Students who need to use both a notebook and a laptop simultaneously run out of room. Our team of six set out to design a modular add-on that clamps securely, stores flat when not in use, and expands surface area without interfering with neighboring seats.'
     }, {
       heading: 'Design Iterations',
       body: 'Our first concept used a telescoping aluminum rod clamp with pivot bars to hold the platform. After structural analysis revealed the PLA pivot bar would fail under repeated bending, we pivoted to a C-clamp + railed-beam approach. The hinge mounting system also changed significantly: initial designs used a horizontal barrel hinge that created stress concentrations at the MDF insert points, so we switched to a custom 3D-printed HingeMountBoardSide bracket paired with machined Aluminum 6061 standoffs. The laptop pocket started as a simple flat shelf but evolved into a full finger-jointed box with a hinged lid. Three major iterations were completed before the final fabricated prototype.',
       images: [{
         src: './images/FinalCAD.png',
-        caption: 'Final CAD — railed beam, custom hinge mount, box pocket',
+        caption: 'Final CAD: railed beam, custom hinge mount, box pocket',
         imagePosition: 'center 30%'
       }, {
         src: './images/deskcase.png',
-        caption: 'Folded flat for storage — hinge mounts and laptop pocket'
+        caption: 'Folded flat for storage: hinge mounts and laptop pocket'
       }, {
         src: './images/deskside.png',
-        caption: 'Side profile — C-clamp attachment and unfolded surface'
+        caption: 'Side profile: C-clamp attachment and unfolded surface'
       }]
     }, {
       heading: 'Material & Process Selection',
-      body: 'We evaluated four main candidates for the platform surface: Aluminum 6061-T6, Delrin (Acetal), 0.25" Birch Plywood, and Polycarbonate. FOS and deflection calculations under an 8 lb laptop load on a 15-inch cantilever showed aluminum at FOS 64 and only 0.018" deflection, but its weight and cost were impractical for a prototype. Plywood struck the right balance at FOS 9.2 and 0.117" deflection — stiff enough not to feel flexy under load while remaining affordable and laser-cuttable. PLA 3D printing was selected for brackets, clamp bodies, and hinge mounts where complex geometry mattered more than ultimate strength. The single load-critical part — the Hinge Standoff — was machined from Aluminum 6061 because FEA showed the PLA version exceeded its failure stress.',
+      body: 'We evaluated four main candidates for the platform surface: Aluminum 6061-T6, Delrin (Acetal), 0.25" Birch Plywood, and Polycarbonate. FOS and deflection calculations under an 8 lb laptop load on a 15-inch cantilever showed aluminum at FOS 64 and only 0.018" deflection, but its weight and cost were impractical for a prototype. Plywood struck the right balance at FOS 9.2 and 0.117" deflection, stiff enough not to feel flexy under load while remaining affordable and laser-cuttable. PLA 3D printing was selected for brackets, clamp bodies, and hinge mounts where complex geometry mattered more than ultimate strength. The single load-critical part, the Hinge Standoff, was machined from Aluminum 6061 because FEA showed the PLA version exceeded its failure stress.',
       specialComponent: 'materialsTable'
     }, {
       heading: 'Fits & Tolerances',
-      body: 'Eight fit relationships were defined and ANSI-graded. Most finger joints use LC6 (locational clearance) since wood laser cutting cannot hold tight tolerances — wood glue compensates by filling gaps and adding adhesion. Rotation joints (hinge-to-standoff, clamp pivot bar) use RC4–RC7 grades. Because 3D-printed PLA typically delivers ±0.2–0.5 mm, tolerances were compensated in CAD geometry directly rather than relying on machine precision.',
+      body: 'Eight fit relationships were defined and ANSI-graded. Most finger joints use LC6 (locational clearance) since wood laser cutting cannot hold tight tolerances; wood glue compensates by filling gaps and adding adhesion. Rotation joints (hinge-to-standoff, clamp pivot bar) use RC4 to RC7 grades. Because 3D-printed PLA typically delivers ±0.2 to 0.5 mm, tolerances were compensated in CAD geometry directly rather than relying on machine precision.',
       specialComponent: 'fitsTable'
     }, {
       heading: 'Structural Analysis',
-      body: 'FEA in SolidWorks Simulation was run on the PLA HingeMountBoardSide bracket under the full 8 lb laptop load (applied as a cantilever moment). Results showed maximum principal stress of 144.42 MPa — exceeding PLA\'s ~50 MPa tensile strength. Re-running with Aluminum Alloy brought stress well within the 270 MPa yield of 6061-T6. This confirmed our decision to machine the standoff from aluminum and flag the hinge mount as a market-version upgrade target. Maximum deformation was 0.00085 inches at the standoff hole interface — negligible for function.'
+      body: 'FEA in SolidWorks Simulation was run on the PLA HingeMountBoardSide bracket under the full 8 lb laptop load (applied as a cantilever moment). Results showed maximum principal stress of 144.42 MPa, exceeding PLA\'s ~50 MPa tensile strength. Re-running with Aluminum Alloy brought stress well within the 270 MPa yield of 6061-T6. This confirmed our decision to machine the standoff from aluminum and flag the hinge mount as a market-version upgrade target. Maximum deformation was 0.00085 inches at the standoff hole interface, negligible for function.'
     }, {
       heading: 'Prototype Reflection',
       body: 'The final prototype met both primary goals: it expanded desk area significantly and stored a laptop securely. The laser-cut finger joints were glued with wood glue and held well through testing, though long-term fatigue of the glue bond is a concern we\'d address with mechanical fasteners in a v2. The 3D-printed clamp bodies performed acceptably but showed slight creep under sustained clamping load. Future improvements: a more compact clamp attachment, a latch to prevent the laptop from sliding out, and composite or injection-molded hinges for durability. Overall we\'re proud of a working, buildable prototype that solves a real problem.',
@@ -346,7 +346,7 @@ const PROJECTS = [{
       name: 'Fold-Out Top',
       material: 'Wood',
       process: 'Laser Cutter',
-      justification: 'Mostly flat — laser cutting is faster and cleaner than 3D printing for this geometry.'
+      justification: 'Mostly flat, so laser cutting is faster and cleaner than 3D printing for this geometry.'
     }, {
       id: 3,
       name: 'Wood Laptop Holder',
@@ -370,7 +370,7 @@ const PROJECTS = [{
       name: 'Clamp Pivot Bar',
       material: 'Wood',
       process: 'Laser Cutter',
-      justification: 'Flat, lightly loaded — laser cutting is faster than 3D printing. (Old design, replaced.)'
+      justification: 'Flat and lightly loaded, so laser cutting is faster than 3D printing. (Old design, replaced.)'
     }, {
       id: 7,
       name: 'Clamp Beam Mount / Hinge Holder',
@@ -382,7 +382,7 @@ const PROJECTS = [{
       name: 'Hinge Standoff',
       material: 'Aluminum 6061',
       process: 'Machining',
-      justification: 'Carries high stress — PLA failed FEA. Machined Al 6061 is strong and durable.'
+      justification: 'Carries high stress and PLA failed FEA. Machined Al 6061 is strong and durable.'
     }, {
       id: 9,
       name: 'Hinge Board Side',
@@ -404,7 +404,7 @@ const PROJECTS = [{
       ansi: 'LC6',
       tolA: '1 in + 0.002 in (finger length)',
       tolB: '1 in −0.0008 to −0.002 in (gap length)',
-      deliverable: 'No — glue compensates'
+      deliverable: 'No, glue compensates'
     }, {
       fit: 2,
       compA: 'HingeMountBoardSide',
@@ -413,7 +413,7 @@ const PROJECTS = [{
       ansi: 'LC6',
       tolA: '2 in + 0.002 in',
       tolB: '2 in −0.0008 to −0.002 in',
-      deliverable: '3DP: No — adjusted in CAD'
+      deliverable: '3DP: No, adjusted in CAD'
     }, {
       fit: 3,
       compA: 'Hinge',
@@ -431,7 +431,7 @@ const PROJECTS = [{
       ansi: 'RC4',
       tolA: 'Hole ⌀0.25 in + 0.0009 in',
       tolB: 'Rod ⌀0.25 in −0.0005 to −0.0011 in',
-      deliverable: 'No — adjusted in CAD'
+      deliverable: 'No, adjusted in CAD'
     }, {
       fit: 5,
       compA: 'HingeMountBoardSide',
@@ -440,7 +440,7 @@ const PROJECTS = [{
       ansi: 'RC7',
       tolA: 'Mount inner 38.1 mm + 0.0025 in',
       tolB: 'Hinge 38.1 mm −0.003 to −0.0046 in',
-      deliverable: '3DP: No — adjusted in CAD'
+      deliverable: '3DP: No, adjusted in CAD'
     }, {
       fit: 6,
       compA: 'LocknutRetainer',
@@ -449,7 +449,7 @@ const PROJECTS = [{
       ansi: 'LC6',
       tolA: 'Flat-to-flat 5.7 mm + 0.0012 in',
       tolB: '5.7 mm −0.0004 to −0.0011 in',
-      deliverable: '3DP: No — adjusted in CAD'
+      deliverable: '3DP: No, adjusted in CAD'
     }, {
       fit: 7,
       compA: 'ScrewCapToScrew',
@@ -458,7 +458,7 @@ const PROJECTS = [{
       ansi: 'LC3',
       tolA: 'Hole ⌀0.25 in + 0.001 in',
       tolB: 'Screw ⌀0.25 in −0.0005 to −0.001 in',
-      deliverable: '3DP: No — adjusted in CAD'
+      deliverable: '3DP: No, adjusted in CAD'
     }, {
       fit: 8,
       compA: 'All screws',

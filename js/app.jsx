@@ -173,7 +173,7 @@ const App = () => {
               ENGINEERING PROJECTS
             </h2>
             <p className="max-w-2xl mx-auto mt-4" style={{ color: '#8892a4' }}>
-              A detailed look at my design process, analysis, and fabrication work from UC Berkeley and beyond.
+              A detailed look at my design process, analysis, and fabrication work.
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-// Tailwind CDN configuration — custom colors, fonts, and animations.
+// Tailwind CDN configuration: custom colors, fonts, and animations.
 // Must load after the Tailwind CDN script in index.html.
 tailwind.config = {
   theme: {
