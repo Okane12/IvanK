@@ -15,7 +15,7 @@ const RESUME = "./pdfs/resume-ivan-kuang.pdf";
 const PROJECTS = [{
   id: '1',
   category: 'Academic & Personal Projects',
-  order: 2,
+  order: 3,
   title: 'Wind Turbine',
   description: 'Designed a wind tower under strict constraints (<17 in³ volume, 16" height) for a 9x9x9" 3D printer. The design successfully housed motors and turbine blades while minimizing deflection (9.63mm under 3.5kg load). Validated performance outputs of 0.5W power generation through physical testing.',
   tags: ['3D Printing', 'DfM', 'Simulation', 'Prototyping', 'Solidworks', 'FEA'],
@@ -126,7 +126,7 @@ const PROJECTS = [{
 }, {
   id: '5',
   category: 'Academic & Personal Projects',
-  order: 3,
+  order: 4,
   title: 'Skofnung',
   description: 'Designed a 1 lb plastic antweight combat robot built around a custom shuffle-drive system. Uses a four-bar linkage driven by a crank to produce an optimized walking path, modeled through Python simulations to refine stride length and step height.',
   tags: ['Onshape', 'DfM', '3D Printing', 'Mechanical Design'],
@@ -156,7 +156,7 @@ const PROJECTS = [{
 }, {
   id: '8',
   category: 'Academic & Personal Projects',
-  order: 5,
+  order: 6,
   title: 'Wine Quality Predictor',
   description: 'Trained 40 machine learning models to predict red wine quality from 11 chemical properties. Compared linear, ridge, and lasso regression, random forests, gradient boosted trees, and neural networks across hyperparameter sweeps. The best model, a random forest, reached a validation R² of 0.498.',
   tags: ['Python', 'scikit-learn', 'TensorFlow', 'Pandas', 'Machine Learning', 'Data Analysis'],
@@ -193,15 +193,15 @@ const PROJECTS = [{
 }, {
   id: '9',
   category: 'Academic & Personal Projects',
-  order: 6,
-  title: 'Smart Powder Dispenser',
+  order: 2,
+  title: 'Smart Matcha Dispenser',
   description: 'Automatic matcha dispenser built for ME 100 at UC Berkeley. A load cell weighs the water in your cup, one ESP32 sends the weight over ESP-NOW to a second that pulses a micromotor to dispense the right amount of powder, and a third drives an LCD readout. No buttons and no measuring spoons.',
   tags: ['ESP32', 'ESP-NOW', 'Electronics', 'Embedded Systems', 'Sensors', 'Rapid Prototyping'],
   imageUrl: './images/dispenser-prototype.jpg',
   imagePosition: 'center 30%',
   link: '#',
   details: {
-    overview: 'Three-person team project for ME 100 at UC Berkeley. The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
+    overview: 'The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
     videoLink: 'https://drive.google.com/file/d/1sWx95r4op364dgnDKFqRugCXP4zl0sIi/view',
     sections: [{
       heading: 'How It Works',
@@ -251,7 +251,7 @@ const PROJECTS = [{
 }, {
   id: '6',
   category: 'Academic & Personal Projects',
-  order: 4,
+  order: 5,
   title: 'Binder Jet Printer',
   description: 'Developed a high-fidelity Binder Jetting research platform at a 90% cost reduction compared to commercial units. Integrated a 40MP in-situ imaging pipeline and CNN-based defect detection framework for real-time anomaly classification.',
   tags: ['Solidworks', 'Electronics', 'Machine Learning', 'Mechanical Design', '3D Printing', 'Materials Science'],
