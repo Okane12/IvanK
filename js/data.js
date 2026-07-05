@@ -35,13 +35,13 @@ const PROJECTS = [{
       body: 'The tower uses a triangular base that lofts into a spiraling truss upper section. Triangular cross-bracing was chosen for its stiffness-to-volume ratio. The two halves connect via tapered male/female pegs and were bonded with Loctite 435 ABS glue. Final volume: 15.92 in³.'
     }, {
       heading: 'FEA & Structural Analysis',
-      body: 'A 99,774-element solid mesh was run in SolidWorks Simulation with a 9.8N tip load. Max von Mises stress: 8.77 MPa (well below ABS yield of 20 MPa). Minimum FOS: 4.4. Predicted deflection at 1kg: 1.92mm.'
+      body: 'A 99,774-element solid mesh was run in SolidWorks Simulation with a 9.8N tip load. Max von Mises stress: 8.77 MPa (well below ABS yield of 20 MPa). Minimum factor of safety: 4.4, meaning the structure carries over 4x its design load before failure. Predicted deflection at 1kg: 1.92mm.'
     }, {
       heading: 'Testing Results',
       body: 'Power test at 25 mph: peak output of 0.5W at 1.45V, 335mA, 2683 RPM. Deflection test: 2.63mm at 1kg load (vs. 1.92mm predicted, 25% higher, likely due to FDM layer anisotropy). Tower stiffness: 3.55 N/mm. Stiffness-per-gram: 19.9 N/mm·kg.'
     }, {
       heading: 'What I Learned',
-      body: 'FEA assumes isotropic material, which FDM prints are not. Layer orientation relative to load direction significantly affects real-world stiffness. For the rotor, the hub thickness constrained our ability to implement the desired twist angle, limiting efficiency to 0.83% vs. the Betz limit of 59.3%. Future iterations would prioritize a hub redesign to allow greater twist.'
+      body: 'FEA assumes isotropic material, which FDM prints are not. Layer orientation relative to load direction significantly affects real-world stiffness. For the rotor, the hub thickness constrained our ability to implement the desired twist angle, limiting efficiency to 0.83% vs. the Betz limit of 59.3%, the theoretical ceiling for any wind turbine. Future iterations would prioritize a hub redesign to allow greater twist.'
     }]
   }
 }, {
@@ -61,7 +61,7 @@ const PROJECTS = [{
       body: 'Semiconductor fabs handle sensitive wafers and components that are vulnerable to vibration, static discharge, and particulate contamination. Existing solutions are either extremely expensive (>$100k) or require human intervention that introduces contamination risk.'
     }, {
       heading: 'The Cart',
-      body: 'A 30"×18"×30" enclosed cart with polycarbonate magnetic-sealed doors and rubber outlines to prevent particle leakage. Mecanum wheels allow omnidirectional movement. A detachable handle enables manual operation as a fallback. FEA on the wheel connector (Al 7075) showed FOS > 800 under 50 lb load. Center of gravity: 12.1", which is low enough to prevent tipping.'
+      body: 'A 30"×18"×30" enclosed cart with polycarbonate magnetic-sealed doors and rubber outlines to prevent particle leakage. Mecanum wheels allow omnidirectional movement. A detachable handle enables manual operation as a fallback. FEA on the wheel connector (Al 7075) showed a factor of safety above 800 under a 50 lb load. Center of gravity: 12.1", which is low enough to prevent tipping.'
     }, {
       heading: 'The Stabilizer',
       body: 'A 3-DOF kinematic platform using three NEMA 17 stepper motors and stainless steel pushrods to actively level the tray surface. Inspired by camera gimbals, a 3-point isolator layout forms a kinematic triangle under the tray. A PID loop driven by an IMU damps angular drift in real time. All materials are ESD-safe and cleanroom-compatible.'
@@ -96,7 +96,7 @@ const PROJECTS = [{
       body: 'Impact load FEA: vertical descent simulation, peak stress 199.2 MPa within elastic limits. Vibration analysis: primary natural frequency at 1,749.3 Hz, which is well outside the engine-induced vibration range, preventing resonance failure. Fastener placement was optimized by mapping nodal regions in the vibration mode shapes to prevent loosening under cyclic loading.'
     }, {
       heading: 'Current Work',
-      body: 'Currently designing and analyzing Von Karman nose cone geometries to minimize parasitic drag on the primary flight vehicle. Also developing additional airframe protection strategies for avionics bays and external sensor packages.'
+      body: 'Currently designing and analyzing Von Karman nose cones, a profile shape with mathematically minimal drag for its length and diameter, to cut parasitic drag on the primary flight vehicle. Also developing additional airframe protection strategies for avionics bays and external sensor packages.'
     }]
   }
 }, {
@@ -144,7 +144,7 @@ const PROJECTS = [{
       body: 'The locomotion uses a four-bar linkage driven by a crank to generate the walking path. I modeled the kinematics in Python, varying crank position, link lengths, and coupler geometry to optimize stride length and step height for smooth, controllable forward motion. The simulation output foot trajectory curves that I used to select the final geometry.'
     }, {
       heading: 'CAD & Packaging',
-      body: 'Drive modules were developed in Onshape using a master sketch approach where all critical geometry defined in a single sketch, with parts referencing it. This allowed rapid iteration without downstream rebuild failures. Tight packaging was critical to hit the 1 lb limit while fitting motors, ESCs, and a receiver.'
+      body: 'Drive modules were developed in Onshape using a master sketch approach where all critical geometry defined in a single sketch, with parts referencing it. This allowed rapid iteration without downstream rebuild failures. Tight packaging was critical to hit the 1 lb limit while fitting motors, speed controllers, and a receiver.'
     }, {
       heading: 'Fabrication',
       body: 'Feet were SLA-printed in Formlabs Elastic 40A resin for grip and compliance. The main chassis is FDM-printed in PLA for cost and iteration speed, with future versions planned in Onyx for impact resistance. Assembly uses press-fit joints and M2 hardware throughout.'
@@ -165,14 +165,14 @@ const PROJECTS = [{
   imageBg: '#161b22',
   link: './pdfs/wine-quality-report.pdf',
   details: {
-    overview: 'Team course project: predict the quality score of Portuguese red wine from lab measurements alone. We built a model comparison pipeline on the Kaggle Red Wine Quality dataset (1599 wines, 11 chemical features, quality scored by human tasters) and tested 40 model configurations across 6 families. Every chart on this page is interactive and rendered from the actual experiment results, not screenshots.',
+    overview: 'Team project: predict the quality score of red wine from lab measurements alone. Wine quality is graded 1 to 10 by human tasters, where 1 is undrinkable and 10 is exceptional, so the score is subjective and depends on who is tasting. The goal was a reproducible, data-backed estimate of that score using only measurable chemistry. We built a model comparison pipeline on the Kaggle Red Wine Quality dataset (1599 Portuguese red wines) and tested 40 model configurations across 6 families. Every chart on this page is interactive and rendered from the actual experiment results, not screenshots.',
     sections: [{
       heading: 'The Data',
-      body: '1599 samples, no missing values, all features numeric: acidity, sugar, chlorides, sulfur dioxide, density, pH, sulphates, and alcohol. Scores cluster at 5 and 6, so the models see very few examples of great or terrible wine. That skew caps how well any model can predict the extremes.',
+      body: 'Each wine has 11 measured properties: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free and total sulfur dioxide, density, pH, sulphates, and alcohol. The quality label is the tasters\' sensory score on the 1 to 10 scale, and the models learn to map those 11 numbers to it. No wine in the dataset scored below 3 or above 8, and most sit at 5 or 6, so the models see very few examples of great or terrible wine. That skew caps how well any model can predict the extremes. There are no missing values and every feature is numeric.',
       charts: ['qualityDist']
     }, {
       heading: 'Method',
-      body: 'The data was split 70/20/10 into train, validation, and test sets, and features were standardized. Each model family got a hyperparameter sweep: alpha for ridge and lasso, tree count and depth for the forests and boosted trees, and layer count, width, and activation for the neural nets. Models were compared on validation R², with training R² used to catch overfitting.'
+      body: 'The data was split 70/20/10 into train, validation, and test sets, and features were standardized. Each model family got a hyperparameter sweep: alpha for ridge and lasso, tree count and depth for the forests and boosted trees, and layer count, width, and activation for the neural nets. Models were compared on validation R², which measures how much of the score variation a model explains: 1.0 is a perfect fit and 0 is no better than guessing the average quality. Training R² was tracked alongside it to catch overfitting.'
     }, {
       heading: 'Linear Baselines',
       body: 'Plain linear regression scored 0.346 on validation with a similarly low training score, a clear underfit. Regularization barely helped. The ridge curve peaks near alpha 100 and then falls as the coefficients shrink too far. Lasso only got worse as alpha grew and eventually zeroed out every feature.',
@@ -258,7 +258,7 @@ const PROJECTS = [{
   imageUrl: './images/BinderJet.jpg',
   link: '#',
   details: {
-    overview: 'As an Undergraduate Researcher in the Gu Research Group at UC Berkeley, I am helping develop a custom binder jetting research platform. We built this from scratch at a 90% cost reduction compared to commercial systems to study green body structural integrity and process parameter optimization.',
+    overview: 'As an Undergraduate Researcher in the Gu Research Group at UC Berkeley, I am helping develop a custom binder jetting research platform. We built this from scratch at a 90% cost reduction compared to commercial systems to study green body structural integrity (the green body is the fragile powder part before it is sintered solid) and process parameter optimization.',
     sections: [{
       heading: 'Why Build It From Scratch?',
       body: 'Commercial binder jet printers cost $200k to $1M+ and offer no access to process internals. By building our own, we can instrument every axis, tune every parameter, and implement in-situ imaging that commercial machines do not support. Total build cost: under $15,000.'
@@ -270,7 +270,7 @@ const PROJECTS = [{
       body: 'A 40MP camera captures each powder layer after recoating. Images are processed to detect surface defects such as voids, cracks, and uneven spreading before the binder is deposited. This allows us to correlate process parameters like print speed, roller speed, powder density, and overfeed ratio with green body quality in real time.'
     }, {
       heading: 'CNN Defect Detection',
-      body: 'Using labeled defect datasets from our imaging pipeline, a CNN-based classifier has been developed using image segmentation to identify and categorize anomalies. The objective is to establish a closed-loop control system that automatically adjusts parameters mid-print upon defect detection, a capability that currently remains absent from commercial platforms.'
+      body: 'Using labeled defect datasets from our imaging pipeline, a CNN (convolutional neural network) classifier has been developed using image segmentation to identify and categorize anomalies. The objective is to establish a closed-loop control system that automatically adjusts parameters mid-print upon defect detection, a capability that currently remains absent from commercial platforms.'
     }, {
       heading: 'Status',
       body: 'Mechanical assembly is complete. Electronics integration and software pipeline are actively in development. First print tests are planned for this semester.'

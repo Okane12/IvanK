@@ -34,7 +34,9 @@ const baseChartOptions = (xTitle, yTitle) => ({
 
 const lineSweep = (points, label, color, xTitle, logX) => {
   const options = baseChartOptions(xTitle, 'Validation R²');
-  if (logX) options.scales.x.type = 'logarithmic';
+  // Point data needs a numeric axis; without it Chart.js stacks
+  // every point on one category and draws a vertical line.
+  options.scales.x.type = logX ? 'logarithmic' : 'linear';
   options.plugins.legend.display = false;
   return {
     type: 'line',

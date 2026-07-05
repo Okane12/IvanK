@@ -174,8 +174,9 @@ const ProjectDetailPage = ({ project, onBack, onOpenPdf }) => {
               GD&T DRAWINGS
             </h2>
             <p className="text-sm mt-3 mb-1" style={{ color: '#8892a4' }}>
-              Browse the engineering drawings directly below. Use the arrows to page through,
-              or the dots to jump to a specific page.
+              GD&T (geometric dimensioning and tolerancing) drawings define each part's
+              dimensions, fits, and allowable manufacturing tolerances. Browse them directly
+              below. Use the arrows to page through, or the dots to jump to a specific page.
             </p>
             <GdtCarousel pdfSources={details.gdtPdfs} />
           </div>
