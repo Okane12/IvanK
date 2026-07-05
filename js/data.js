@@ -191,6 +191,35 @@ const PROJECTS = [{
     }]
   }
 }, {
+  id: '9',
+  category: 'Academic & Personal Projects',
+  order: 6,
+  title: 'Smart Powder Dispenser',
+  description: 'Automatic matcha dispenser built for ME 100 at UC Berkeley. A load cell weighs the water in your cup, one ESP32 sends the weight over ESP-NOW to a second that pulses a micromotor to dispense the right amount of powder, and a third drives an LCD readout. No buttons and no measuring spoons.',
+  tags: ['ESP32', 'ESP-NOW', 'Electronics', 'Embedded Systems', 'Sensors', 'Rapid Prototyping'],
+  imageUrl: './images/dispenser-wiring.png',
+  imageFit: 'contain',
+  imageBg: '#0d1117',
+  link: './pdfs/me100-presentation.pdf',
+  details: {
+    overview: 'Team project for ME 100 at UC Berkeley, built with Alyssa Wong and Hamna Asif. The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
+    videoLink: 'https://drive.google.com/file/d/1sWx95r4op364dgnDKFqRugCXP4zl0sIi/view',
+    sections: [{
+      heading: 'How It Works',
+      body: 'Three ESP32 Feather boards talk over ESP-NOW, a lightweight 2.4 GHz protocol that needs no router. The first board reads the load cell through an HX711 amplifier and converts the raw voltage to grams, zeroed to the weight of the cup. It sends the water weight to the second board, which computes the ideal matcha amount and pulses a micromotor with PWM to turn the dispense wheel in fixed steps. The third board runs an LCD that reports how much water was measured and how much matcha was dispensed.',
+      images: [{
+        src: './images/dispenser-wiring.png',
+        caption: 'System wiring at signal level'
+      }]
+    }, {
+      heading: 'The Build',
+      body: 'The frame holds a powder hopper and slotted dispense wheel above a cup platform that sits on the load cell. The electronics live on breadboards behind the frame: two Feather boards, the HX711 amplifier, the motor, and its battery.'
+    }, {
+      heading: 'Challenges',
+      body: 'The motor could not reliably turn the dispense wheel, so we opened up the tolerance between the wheel and its housing to cut friction. The microgear motor also drew more power than the board could supply, so it runs off an external 9V battery instead. And because the system originally gave no feedback on quantities, we added the LCD node to report the measured water and dispensed matcha.'
+    }]
+  }
+}, {
   id: '6',
   category: 'Academic & Personal Projects',
   order: 4,
