@@ -202,18 +202,42 @@ const PROJECTS = [{
   imageBg: '#0d1117',
   link: './pdfs/me100-presentation.pdf',
   details: {
-    overview: 'Team project for ME 100 at UC Berkeley, built with Alyssa Wong and Hamna Asif. The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
+    overview: 'Three-person team project for ME 100 at UC Berkeley. The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
     videoLink: 'https://drive.google.com/file/d/1sWx95r4op364dgnDKFqRugCXP4zl0sIi/view',
     sections: [{
       heading: 'How It Works',
-      body: 'Three ESP32 Feather boards talk over ESP-NOW, a lightweight 2.4 GHz protocol that needs no router. The first board reads the load cell through an HX711 amplifier and converts the raw voltage to grams, zeroed to the weight of the cup. It sends the water weight to the second board, which computes the ideal matcha amount and pulses a micromotor with PWM to turn the dispense wheel in fixed steps. The third board runs an LCD that reports how much water was measured and how much matcha was dispensed.',
+      body: 'Three ESP32 Feather boards split the job: one senses, one dispenses, one displays. They talk over ESP-NOW, a lightweight 2.4 GHz protocol that lets the boards message each other directly with no router in between. Set a cup on the platform and pour water. The sensing node streams the weight to the actuation node, and once the reading settles, the actuation node computes the matcha dose, dispenses it in steps, and reports the final numbers to the display node.',
       images: [{
         src: './images/dispenser-wiring.png',
         caption: 'System wiring at signal level'
+      }, {
+        src: './images/dispenser-feather.png',
+        caption: 'ESP32 Feather V2, one per node'
       }]
     }, {
-      heading: 'The Build',
-      body: 'The frame holds a powder hopper and slotted dispense wheel above a cup platform that sits on the load cell. The electronics live on breadboards behind the frame: two Feather boards, the HX711 amplifier, the motor, and its battery.'
+      heading: 'Sensing: The Load Cell',
+      body: 'The cup platform sits on a bar load cell, an aluminum beam with strain gauges that flex microscopically under weight. The bridge output is a few millivolts at most, far too small for the ESP32 to read directly, so an HX711 board amplifies and digitizes it with a 24-bit ADC. The sensing node tares to the weight of the empty cup, averages a burst of readings to knock down noise, and converts raw counts to grams using a calibration factor we set with known weights. Small fluctuations are ignored so vibration and drift do not trigger the dispenser.',
+      images: [{
+        src: './images/dispenser-loadcell.png',
+        caption: 'Bar load cell under the cup platform'
+      }]
+    }, {
+      heading: 'Actuation: The Dispenser',
+      body: 'A micro metal gearmotor turns a slotted wheel at the bottom of the powder hopper. Each PWM pulse rotates the wheel one fixed interval, and each interval drops a consistent scoop of matcha into the cup, so dosing comes down to counting turns. The actuation node takes the water weight, targets a standard ratio of about 2 g of matcha per 70 g of water, and pulses the motor until the dose is met. Dispensing in steps rather than one long pour also keeps the powder from clumping.',
+      images: [{
+        src: './images/dispenser-motor.png',
+        caption: 'Micro metal gearmotor driving the dispense wheel'
+      }, {
+        src: './images/dispenser-matcha.jpg',
+        caption: 'The end goal: properly dosed matcha'
+      }]
+    }, {
+      heading: 'Display: The LCD Node',
+      body: 'The third ESP32 drives a 16x2 character LCD. It listens for ESP-NOW packets and prints the measured water weight and the matcha dispensed, so you can check the dose without plugging anything into a laptop. During development it doubled as a debug console, showing connection status and raw load cell readings while we tuned the calibration.',
+      images: [{
+        src: './images/dispenser-lcd.png',
+        caption: '16x2 LCD readout on the display node'
+      }]
     }, {
       heading: 'Challenges',
       body: 'The motor could not reliably turn the dispense wheel, so we opened up the tolerance between the wheel and its housing to cut friction. The microgear motor also drew more power than the board could supply, so it runs off an external 9V battery instead. And because the system originally gave no feedback on quantities, we added the LCD node to report the measured water and dispensed matcha.'
