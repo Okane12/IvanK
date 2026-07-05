@@ -197,10 +197,9 @@ const PROJECTS = [{
   title: 'Smart Powder Dispenser',
   description: 'Automatic matcha dispenser built for ME 100 at UC Berkeley. A load cell weighs the water in your cup, one ESP32 sends the weight over ESP-NOW to a second that pulses a micromotor to dispense the right amount of powder, and a third drives an LCD readout. No buttons and no measuring spoons.',
   tags: ['ESP32', 'ESP-NOW', 'Electronics', 'Embedded Systems', 'Sensors', 'Rapid Prototyping'],
-  imageUrl: './images/dispenser-wiring.png',
-  imageFit: 'contain',
-  imageBg: '#0d1117',
-  link: './pdfs/me100-presentation.pdf',
+  imageUrl: './images/dispenser-prototype.jpg',
+  imagePosition: 'center 30%',
+  link: '#',
   details: {
     overview: 'Three-person team project for ME 100 at UC Berkeley. The dispenser weighs the water already in your cup, computes the right matcha to water ratio, and dispenses the powder on its own. Most automatic powder dispensers are industrial machines. This one is sized for a kitchen counter and works without any user input.',
     videoLink: 'https://drive.google.com/file/d/1sWx95r4op364dgnDKFqRugCXP4zl0sIi/view',
@@ -218,6 +217,9 @@ const PROJECTS = [{
       heading: 'Sensing: The Load Cell',
       body: 'The cup platform sits on a bar load cell, an aluminum beam with strain gauges that flex microscopically under weight. The bridge output is a few millivolts at most, far too small for the ESP32 to read directly, so an HX711 board amplifies and digitizes it with a 24-bit ADC. The sensing node tares to the weight of the empty cup, averages a burst of readings to knock down noise, and converts raw counts to grams using a calibration factor we set with known weights. Small fluctuations are ignored so vibration and drift do not trigger the dispenser.',
       images: [{
+        src: './images/dispenser-loadcell-wiring.jpg',
+        caption: 'Sensing node wired up: load cell into the HX711, into the Feather'
+      }, {
         src: './images/dispenser-loadcell.png',
         caption: 'Bar load cell under the cup platform'
       }]
@@ -225,6 +227,9 @@ const PROJECTS = [{
       heading: 'Actuation: The Dispenser',
       body: 'A micro metal gearmotor turns a slotted wheel at the bottom of the powder hopper. Each PWM pulse rotates the wheel one fixed interval, and each interval drops a consistent scoop of matcha into the cup, so dosing comes down to counting turns. The actuation node takes the water weight, targets a standard ratio of about 2 g of matcha per 70 g of water, and pulses the motor until the dose is met. Dispensing in steps rather than one long pour also keeps the powder from clumping.',
       images: [{
+        src: './images/dispenser-motor-wiring.jpg',
+        caption: 'Motor node breadboarded with the external 9V supply'
+      }, {
         src: './images/dispenser-motor.png',
         caption: 'Micro metal gearmotor driving the dispense wheel'
       }, {
