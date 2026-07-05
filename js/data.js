@@ -321,7 +321,14 @@ const PROJECTS = [{
       body: 'FEA in SolidWorks Simulation was run on the PLA HingeMountBoardSide bracket under the full 8 lb laptop load (applied as a cantilever moment). Results showed maximum principal stress of 144.42 MPa — exceeding PLA\'s ~50 MPa tensile strength. Re-running with Aluminum Alloy brought stress well within the 270 MPa yield of 6061-T6. This confirmed our decision to machine the standoff from aluminum and flag the hinge mount as a market-version upgrade target. Maximum deformation was 0.00085 inches at the standoff hole interface — negligible for function.'
     }, {
       heading: 'Prototype Reflection',
-      body: 'The final prototype met both primary goals: it expanded desk area significantly and stored a laptop securely. The laser-cut finger joints were glued with wood glue and held well through testing, though long-term fatigue of the glue bond is a concern we\'d address with mechanical fasteners in a v2. The 3D-printed clamp bodies performed acceptably but showed slight creep under sustained clamping load. Future improvements: a more compact clamp attachment, a latch to prevent the laptop from sliding out, and composite or injection-molded hinges for durability. Overall we\'re proud of a working, buildable prototype that solves a real problem.'
+      body: 'The final prototype met both primary goals: it expanded desk area significantly and stored a laptop securely. The laser-cut finger joints were glued with wood glue and held well through testing, though long-term fatigue of the glue bond is a concern we\'d address with mechanical fasteners in a v2. The 3D-printed clamp bodies performed acceptably but showed slight creep under sustained clamping load. Future improvements: a more compact clamp attachment, a latch to prevent the laptop from sliding out, and composite or injection-molded hinges for durability. Overall we\'re proud of a working, buildable prototype that solves a real problem.',
+      images: [{
+        src: './images/deskextender-final.png',
+        caption: 'Finished prototype, folded flat with both C-clamps'
+      }, {
+        src: './images/deskextender-mounted.png',
+        caption: 'Clamping onto a lecture hall desk'
+      }]
     }],
     gdtPdfs: [{
       pdfUrl: './pdfs/e29-gdt-final-project.pdf',
